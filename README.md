@@ -4,5 +4,6 @@
 
 #### Author
 #### Name: Shangzhen Wei 
-#### Student.No: 2541221W
+#### GUID: 2541221W
+#### E-mail: 2541221w@student.gla.ac.uk
 
