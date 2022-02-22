@@ -1,0 +1,37 @@
+
+<div class="sidebar fl">
+     <br/>
+     <ul class="body_left_list">
+         {% block list %}
+         <li>
+             <label>
+                 <span>Language</span>
+                 <i ></i>
+                 <a href="javascript:;"></a>
+             </label>
+             <ul>
+                 
+                 {% if categories %}
+                     {% for c in categories %}
+                         {% if c == current_category %}
+                             <li class="">
+                                 <strong><a href="{% url 'rango:show_category' c.slug %}">
+                                     <span data-feather="archive"></span>{{ c.name }}</a>
+                                 </strong>
+                             </li>
+                         {% else %}
+                             <li class="">
+                                 <a  href="{% url 'rango:show_category' c.slug %}">
+                                     <span data-feather="archive"></span>{{ c.name }}
+                                 </a>
+                             </li>
+                         {% endif %}
+                     {% endfor %}
+                 {% else %}
+                     <li><strong>There are no categories present.</strong></li>
+                 {% endif %}  
+             </ul>
+         </li>
+         {% endblock %}
+     </ul>
+ </div>

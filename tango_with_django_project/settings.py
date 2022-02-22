@@ -14,25 +14,21 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-
+STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-
+MEDIA_ROOT = MEDIA_DIR
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'd)a0ng&^p-r=i4!-c1(%2ljiq+c)mq*h6j38#&ymhw)0hst&%q'
+SECRET_KEY = '1ecda#5u90-7u*6t0wlv&8(v^z&qfsh3=swba#81*zgb%!8l4i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-LOGIN_URL = 'rango:login'
 
 ALLOWED_HOSTS = []
 
@@ -47,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -64,7 +61,7 @@ ROOT_URLCONF = 'tango_with_django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR, ],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,7 +97,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator','OPTIONS': { 'min_length': 6,}
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -129,8 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = [STATIC_DIR, ]
+# If True, users can register.
+REGISTRATION_OPEN = True
+# If True, the user will be automatically logged in after registering.
+REGISTRATION_AUTO_LOGIN = True
+# The URL that Django redirects users to after logging in.
+LOGIN_REDIRECT_URL = 'rango:index'
+# The page users are directed to if they are not logged in.
+# This was set in a previous chapter. The registration package uses this, too.
+LOGIN_URL = 'auth_login'
